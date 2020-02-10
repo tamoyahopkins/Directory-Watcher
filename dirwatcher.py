@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, argparse, logging
+import os, argparse, sys, logging
 
 __author__ = 'tamoyahopkins'
 
@@ -57,9 +57,9 @@ def watch_dir(dir_, search_text, ext=None):
         state = current_dict
         compare(state=state, dict=current_dict)
 
-    else:
-        # kill program?
-        print(f'{dir_} is NOT a directory!')
+    # else:
+    #     # kill program?
+    #     print(f'{dir_} is NOT a directory!')
 
 
 def search_dict(dict_, text):
@@ -101,18 +101,48 @@ def compare(state=state, dict=current_dict):
 
 #-------left off here
 def create_parser():
-    parser = argparse.ArgumentParser()
-    parser.add_argument()
+    parser = argparse.ArgumentParser(description="Program searches directory files for indicated text.")
+    parser.add_argument('directory', help="Provide a directory path as a string.  The program will parse files in the directory for the search_text provided.", type=str)
+    parser.add_argument('search_text', help="Provide a text string to search directory files.  If found, program will return filename and line number of text's location.", type=str)
+    parser.add_argument('--interval', '-i', help="Provide an integer (in seconds).  Program will re-run itself once per second(s) indicated.", type=int)
+    parser.add_argument('--extension', '-e', help="Provide a string text extension (e.g. '.pdf').  Program will filter query to only search for indicated file types.", type=str)
     return parser
+
+def check_if_dirpath(path):
+    if os.path.exists(os.path.dirname(path)):
+        return str
+    return None
 
 
 def main(args):
+    # ArgumentParser(prog='dirwatcher.py', usage=None, description=None,
+        # formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error',
+        # add_help=True)
     parser = create_parser()
+    # Namespace(directory='/Users/tamoya/desktop/test_dir',
+        # extension=None, interval=None, search_text='hello')
+    ns = parser.parse_args(args)
+    print(ns)
 
     if not args:
-        # LOG later?
-            parser.print_usage()
+        # LOG
+        parser.print_usage()
+
+    if not os.path.exists(os.path.dirname(ns.directory)):
+        # LOG
+        print(f'ERROR: "{ns.directory}" is not a directory.  Please provide a directory string as your first argument.')
+        parser.print_usage()
+
+    # allow this to take array of filetypes?
+    if ns.extension is not None:
+        watch_dir(ns.directory, ns.search_text, ext=ns.extension)
+
+    watch_dir(ns.directory, ns.search_text)
+
+
 
 
 if __name__ == '__main__':
-    watch_dir('/Users/tamoya/desktop/test_dir', 'hello', ext='.txt')
+    main(sys.argv[1:])
+
+# argparse args, logging, polling
