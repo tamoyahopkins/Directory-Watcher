@@ -1,18 +1,36 @@
 #!/usr/bin/env python
 
-import os, argparse, sys, logging
+import signal, os, argparse, sys, logging, time, datetime
 
 __author__ = 'tamoyahopkins'
 
 # logging config
-startup_banner = ''
-shutdown_banner = ''
-logger = ''
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s: %(levelname)s : %(message)s')
+file_handler = logging.FileHandler('dirwatcher.log', 'a')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
+
+# exit option
+close_program = False
+
+
+def action_signal():
+    '''Actions incoming signals and closes program if needed'''
+    logger.warning(f'INCOMING SIGNAL - {signal.Signals(sig_num).name}')
+    global close_program
+    close_program = True
+
+
+# handle interval
+interval = 0
 
 # program
 current_dict = {}
-print(f'ORIGINAL DICT: {current_dict}')
+# print(f'ORIGINAL DICT: {current_dict}')
 state = {}
+# print(f'STATE: {state}')
 
 
 def watch_dir(dir_, search_text, ext=None):
@@ -52,7 +70,7 @@ def watch_dir(dir_, search_text, ext=None):
                     else:
                         search_dict(current_dict, search_text)
 
-        print(f'DICT AFTER WATCH_DIR FUNCT RUN:{current_dict}')
+        # print(f'CURRENT_DICT:{current_dict}')
         # update state here
         state = current_dict
         compare(state=state, dict=current_dict)
@@ -69,37 +87,37 @@ def search_dict(dict_, text):
     if dict_:
         line_count = 0
         for path, value in dict_.items():
-            print(f'START LINECOUNT: {path} ({line_count})')
+            # print(f'START LINECOUNT: {path} ({line_count})')
             line_count = value
             with open(path) as f:
                 for line in f.readlines()[line_count:]:
                     line_count += 1
                     if text in line:
                         # ----LOG
-                        print(f'Found "{text}" in "{path}" (Line {line_count})')
+                        logger.info(f'Found "{text}" in "{path}" (Line {line_count})')
             dict_[path] = line_count
-        print(f'END LINECOUNT: {path} ({line_count})')
+        # print(f'END LINECOUNT: {path} ({line_count})')
         # may not need
         return dict_
 
     else:
-        print('Internal_dictionary IS empty!!!')
+        logger.info('Directory has no searchable files!')
 
 
 def compare(state=state, dict=current_dict):
     '''compares state with current_dir and logs any changes'''
-    print(f'Current: {len(current_dict)}, state:{len(state)}')
+    # print(f'Current: {len(current_dict)}, state:{len(state)}')
     if len(state) < len(current_dict):
         for path in current_dict:
             if path not in state:
-                print(f'"{path}" added to directory.')
+                logger.info(f'"{path}" added to directory.')
     if len(state) > len(current_dict):
         for path in state:
             if path not in current_dict:
-                print(f'"{path}" removed from directory.')
+                logger.info(f'"{path}" removed from directory.')
 
 
-#-------left off here
+# -------left off here
 def create_parser():
     parser = argparse.ArgumentParser(description="Program searches directory files for indicated text.")
     parser.add_argument('directory', help="Provide a directory path as a string.  The program will parse files in the directory for the search_text provided.", type=str)
@@ -108,41 +126,64 @@ def create_parser():
     parser.add_argument('--extension', '-e', help="Provide a string text extension (e.g. '.pdf').  Program will filter query to only search for indicated file types.", type=str)
     return parser
 
-def check_if_dirpath(path):
-    if os.path.exists(os.path.dirname(path)):
-        return str
-    return None
+
+def log_banner(msg, name, time, end=''):
+    '''create a log banner'''
+    text = ('----------------------------------------------------------\n'
+            f'{time} - {msg} PROGRAM {name}\n{end}'
+            '----------------------------------------------------------\n')
+    with open('dirwatcher.log', 'a') as f:
+        f.write(text)
 
 
-def main(args):
+def main():
+    timer = time.time()
+    start_formatted = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    log_banner('RUNNING', ''.join(sys.argv[:1]).upper(), start_formatted)
+
+
     # ArgumentParser(prog='dirwatcher.py', usage=None, description=None,
-        # formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error',
-        # add_help=True)
+    # formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error',
+    # add_help=True)
     parser = create_parser()
+    args = sys.argv[1:]
     # Namespace(directory='/Users/tamoya/desktop/test_dir',
-        # extension=None, interval=None, search_text='hello')
+    # extension=None, interval=None, search_text='hello')
     ns = parser.parse_args(args)
-    print(ns)
 
-    if not args:
-        # LOG
-        parser.print_usage()
+    signal.signal(signal.SIGTERM, action_signal)
+    signal.signal(signal.SIGTERM, action_signal)
 
-    if not os.path.exists(os.path.dirname(ns.directory)):
-        # LOG
-        print(f'ERROR: "{ns.directory}" is not a directory.  Please provide a directory string as your first argument.')
-        parser.print_usage()
+    while not close_program:
+        try:
+            if not args:
+                parser.print_usage()
 
-    # allow this to take array of filetypes?
-    if ns.extension is not None:
-        watch_dir(ns.directory, ns.search_text, ext=ns.extension)
+            if not os.path.isdir(ns.directory):
+                logger.error(f'"{ns.directory}" is not a directory.  Please provide a directory string as your first argument.')
+                parser.print_usage()
 
-    watch_dir(ns.directory, ns.search_text)
+            if ns.extension is not None:
+                watch_dir(ns.directory, ns.search_text, ext=ns.extension)
+
+            if ns.extension is None:
+                watch_dir(ns.directory, ns.search_text)
+        except OSError as e:
+            logger.error(f'OSError{e}')
+        except Exception as e:
+            logger.error(e)
+        if ns.interval:
+            time.sleep(ns.interval)
+        if ns.interval is None:
+            time.sleep(1.0)
 
 
+    end_formatted = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    stop_timer = time.time() - timer
+    log_banner('CLOSING', ''.join(sys.argv[:1]).upper(), end_formatted, end='TOTAL RUNTIME: {:.3f} \n'.format(stop_timer))
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main()
 
 # argparse args, logging, polling
