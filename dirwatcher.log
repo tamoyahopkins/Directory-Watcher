@@ -1,0 +1,84 @@
+----------------------------------------------------------
+11/02/2020 23:23:39 - RUNNING PROGRAM DIRWATCHER.PY
+----------------------------------------------------------
+2020-02-11 23:23:39,557: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 1)
+2020-02-11 23:23:39,557: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 3)
+2020-02-11 23:23:39,557: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 6)
+2020-02-11 23:23:39,557: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 3)
+2020-02-11 23:23:39,557: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 6)
+2020-02-11 23:23:39,557: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 9)
+2020-02-11 23:23:39,558: INFO : "/Users/tamoya/desktop/test_dir/test1.txt" added to directory.
+2020-02-11 23:23:39,558: INFO : "/Users/tamoya/desktop/test_dir/random2.txt" added to directory.
+2020-02-11 23:23:39,558: INFO : "/Users/tamoya/desktop/test_dir/test2.txt" added to directory.
+2020-02-11 23:23:39,558: INFO : "/Users/tamoya/desktop/test_dir/random1.txt" added to directory.
+2020-02-11 23:23:39,558: INFO : "/Users/tamoya/desktop/test_dir/test.txt" added to directory.
+2020-02-11 23:23:39,558: INFO : "/Users/tamoya/desktop/test_dir/random.txt" added to directory.
+2020-02-11 23:23:39,558: INFO : "/Users/tamoya/desktop/test_dir/liv3.pdf" added to directory.
+2020-02-11 23:23:39,558: INFO : "/Users/tamoya/desktop/test_dir/liv2.pdf" added to directory.
+2020-02-11 23:23:39,558: INFO : "/Users/tamoya/desktop/test_dir/liv1.pdf" added to directory.
+2020-02-11 23:23:47,809: ERROR : Exiting program early due to Keyboard Interrupt.
+----------------------------------------------------------
+11/02/2020 23:25:33 - RUNNING PROGRAM DIRWATCHER.PY
+----------------------------------------------------------
+2020-02-11 23:25:33,501: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 1)
+2020-02-11 23:25:33,501: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 3)
+2020-02-11 23:25:33,501: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 6)
+2020-02-11 23:25:33,501: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 3)
+2020-02-11 23:25:33,501: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 6)
+2020-02-11 23:25:33,501: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 9)
+2020-02-11 23:25:33,501: INFO : "/Users/tamoya/desktop/test_dir/test1.txt" added to directory.
+2020-02-11 23:25:33,501: INFO : "/Users/tamoya/desktop/test_dir/random2.txt" added to directory.
+2020-02-11 23:25:33,501: INFO : "/Users/tamoya/desktop/test_dir/test2.txt" added to directory.
+2020-02-11 23:25:33,501: INFO : "/Users/tamoya/desktop/test_dir/random1.txt" added to directory.
+2020-02-11 23:25:33,501: INFO : "/Users/tamoya/desktop/test_dir/test.txt" added to directory.
+2020-02-11 23:25:33,502: INFO : "/Users/tamoya/desktop/test_dir/random.txt" added to directory.
+2020-02-11 23:25:33,502: INFO : "/Users/tamoya/desktop/test_dir/liv3.pdf" added to directory.
+2020-02-11 23:25:33,502: INFO : "/Users/tamoya/desktop/test_dir/liv2.pdf" added to directory.
+2020-02-11 23:25:33,502: INFO : "/Users/tamoya/desktop/test_dir/liv1.pdf" added to directory.
+2020-02-11 23:25:47,715: ERROR : This program does not exit using CTRL + C
+----------------------------------------------------------
+11/02/2020 23:30:24 - RUNNING PROGRAM DIRWATCHER.PY
+----------------------------------------------------------
+2020-02-11 23:30:24,455: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 1)
+2020-02-11 23:30:24,455: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 3)
+2020-02-11 23:30:24,455: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 6)
+2020-02-11 23:30:24,456: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 3)
+2020-02-11 23:30:24,456: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 6)
+2020-02-11 23:30:24,456: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 9)
+2020-02-11 23:30:24,456: INFO : "/Users/tamoya/desktop/test_dir/test1.txt" added to directory.
+2020-02-11 23:30:24,456: INFO : "/Users/tamoya/desktop/test_dir/random2.txt" added to directory.
+2020-02-11 23:30:24,456: INFO : "/Users/tamoya/desktop/test_dir/test2.txt" added to directory.
+2020-02-11 23:30:24,456: INFO : "/Users/tamoya/desktop/test_dir/random1.txt" added to directory.
+2020-02-11 23:30:24,456: INFO : "/Users/tamoya/desktop/test_dir/test.txt" added to directory.
+2020-02-11 23:30:24,456: INFO : "/Users/tamoya/desktop/test_dir/random.txt" added to directory.
+2020-02-11 23:30:24,456: INFO : "/Users/tamoya/desktop/test_dir/liv3.pdf" added to directory.
+2020-02-11 23:30:24,456: INFO : "/Users/tamoya/desktop/test_dir/liv2.pdf" added to directory.
+2020-02-11 23:30:24,456: INFO : "/Users/tamoya/desktop/test_dir/liv1.pdf" added to directory.
+2020-02-11 23:34:16,451: WARNING : INCOMING SIGNAL - SIGTERM
+----------------------------------------------------------
+11/02/2020 23:34:17 - CLOSING PROGRAM DIRWATCHER.PY
+TOTAL RUNTIME: 233.003 
+----------------------------------------------------------
+----------------------------------------------------------
+11/02/2020 23:40:32 - RUNNING PROGRAM DIRWATCHER.PY
+----------------------------------------------------------
+2020-02-11 23:40:32,539: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 1)
+2020-02-11 23:40:32,539: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 3)
+2020-02-11 23:40:32,539: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test2.txt" (Line 6)
+2020-02-11 23:40:32,540: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 3)
+2020-02-11 23:40:32,540: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 6)
+2020-02-11 23:40:32,540: INFO : Found "hello" in "/Users/tamoya/desktop/test_dir/test.txt" (Line 9)
+2020-02-11 23:40:32,540: INFO : "/Users/tamoya/desktop/test_dir/test1.txt" added to directory.
+2020-02-11 23:40:32,540: INFO : "/Users/tamoya/desktop/test_dir/random2.txt" added to directory.
+2020-02-11 23:40:32,540: INFO : "/Users/tamoya/desktop/test_dir/test2.txt" added to directory.
+2020-02-11 23:40:32,540: INFO : "/Users/tamoya/desktop/test_dir/random1.txt" added to directory.
+2020-02-11 23:40:32,540: INFO : "/Users/tamoya/desktop/test_dir/test.txt" added to directory.
+2020-02-11 23:40:32,540: INFO : "/Users/tamoya/desktop/test_dir/random.txt" added to directory.
+2020-02-11 23:40:32,540: INFO : "/Users/tamoya/desktop/test_dir/liv3.pdf" added to directory.
+2020-02-11 23:40:32,540: INFO : "/Users/tamoya/desktop/test_dir/liv2.pdf" added to directory.
+2020-02-11 23:40:32,540: INFO : "/Users/tamoya/desktop/test_dir/liv1.pdf" added to directory.
+2020-02-11 23:41:18,671: WARNING : INCOMING SIGNAL - SIGINT
+----------------------------------------------------------
+11/02/2020 23:41:19 - CLOSING PROGRAM DIRWATCHER.PY
+TOTAL RUNTIME: 47.135 
+----------------------------------------------------------
